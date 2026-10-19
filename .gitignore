@@ -1,0 +1,22 @@
+# Dependências
+node_modules/
+
+# Cypress outputs
+cypress/downloads/*
+!cypress/downloads/.gitkeep
+cypress/screenshots/
+cypress/videos/
+
+# Variáveis de ambiente
+.env
+.env.*
+cypress/config/.env.*
+!cypress/config/.env.example
+
+# Build / Cobertura
+dist/
+coverage/
+
+# Sistema Operacional
+.DS_Store
+Thumbs.db
