@@ -1,15 +1,15 @@
 <div align="center">
 
-# ⚡ Best Commands Cypress ⚡
-### Cypress Master Automation Toolkit
+# ⚡ Cypress Commands Toolkit ⚡
+### Boilerplate Master de Automação, Resiliência e Comandos Customizados
 
 [![Cypress](https://img.shields.io/badge/Cypress-16.2.0-04C38C?style=for-the-badge&logo=cypress&logoColor=white)](https://www.cypress.io/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-7.0.2-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![Node.js](https://img.shields.io/badge/Node.js-18%2B-339933?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org/)
+[![Branch: cypress-commands-toolkit](https://img.shields.io/badge/Branch-cypress--commands--toolkit-blueviolet?style=for-the-badge&logo=git&logoColor=white)](https://github.com/mthsneves/cypress-commands-toolkit/tree/cypress-commands-toolkit)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
 
 <p align="center">
-  <strong>Boilerplate, Comandos Customizados de Alta Resiliência, Utilitários de Dados Válidos, Helpers de API e Autenticação Concorrente para Projetos Web Modernos (React, Vue, Angular).</strong>
+  <strong>Comandos Customizados de Alta Resiliência, Geradores de Dados Válidos, Helpers de API e Autenticação Concorrente para Aplicações Web Modernas (React, Vue, Angular).</strong>
 </p>
 
 [Visão Geral](#-visão-geral) •
@@ -26,14 +26,14 @@
 
 ## 🎯 Visão Geral
 
-O **Best Commands Cypress** foi desenvolvido para resolver as principais dores de engenharia em testes End-to-End:
+O **Cypress Commands Toolkit** foi desenvolvido para solucionar os principais desafios na automação de testes End-to-End:
 - ❌ **Flaky Tests**: cliques em elementos ainda em animação ou temporariamente desabilitados.
 - ❌ **Colisão de Dados**: cadastros duplicados causados por dados estáticos (`teste@email.com`, CPFs fixos).
-- ❌ **Sessões Concorrentes**: modais inesperados de *"Usuário já conectado em outro dispositivo"*.
-- ❌ **Testes Lentos**: preenchimento moroso de cadastros pela interface gráfica quando poderiam ser semeados via API.
-- ❌ **Seletores Frágeis**: acoplamento com classes de CSS ou tags estruturais voláteis.
+- ❌ **Sessões Concorrentes**: bloqueios por modais de *"Usuário já conectado em outro dispositivo"*.
+- ❌ **Testes Lentos**: lentidão gerada pelo preenchimento de cadastros repetitivos pela UI ao invés de injeção direta via API.
+- ❌ **Seletores Frágeis**: acoplamento com seletores de layout e classes CSS voláteis.
 
-Com este toolkit, seus testes contam com uma camada de abstração resiliente, totalmente tipada com autocomplete no IDE e pronta para rodar em pipelines de CI/CD.
+Com este toolkit, seus testes passam a contar com uma camada padronizada, tipada em TypeScript e com suporte a autocomplete nativo na sua IDE.
 
 ---
 
@@ -54,7 +54,7 @@ graph TD
 ### Estrutura do Repositório
 
 ```text
-Best-Commands-Cypress/
+cypress-commands-toolkit/
 ├── .gitignore                  <- Exclusão rigorosa de lixo, caches e segredos
 ├── CHANGELOG.md                <- Histórico semântico de versões
 ├── LICENSE                     <- Licença MIT permissiva
@@ -137,7 +137,7 @@ import { ApiHelper } from "../support/helpers/apiSeeding";
 
 // Efetua login via API e já grava o token no localStorage da aplicação
 ApiHelper.loginViaAPI("admin@empresa.com", "SenhaForte123!").then((token) => {
-  // Injeta massa de dados direto no banco via cy.request
+  // Injeta massa de dados direto no backend via cy.request
   ApiHelper.seedRecordViaAPI("api/pedidos", { valor: 500 }, token).then((pedido) => {
     cy.visit(`/pedidos/${pedido.id}`);
     cy.validateTextInElement(".pedido-info", [pedido.id, "R$ 500,00"]);
@@ -192,32 +192,32 @@ npm run cy:run:prod
 
 ## 💻 Instalação e Uso
 
-### Clonar e Rodar Localmente:
+### Clonar o Repositório e a Branch:
 ```bash
-git clone https://github.com/mthsneves/Best-Commands-Cypress.git
-cd Best-Commands-Cypress
+git clone -b cypress-commands-toolkit https://github.com/mthsneves/cypress-commands-toolkit.git
+cd cypress-commands-toolkit
 npm install
 ```
 
-### Validar Integridade:
+### Validar Integridade do Toolkit:
 ```bash
-# Validação estática de tipos
+# Validação estática de tipos (TypeScript)
 npm run typecheck
 
-# Execução headless de todos os testes de fumaça
+# Execução headless de todos os testes de fumaça (100% passando)
 npm run cy:run
 
-# Abertura interativa do Cypress Runner
+# Abertura interativa do Cypress Test Runner
 npm run cy:open
 ```
 
 ### Como importar este Toolkit em outro projeto existente:
-1. Instale as dependências:
+1. Instale as dependências de suporte:
    ```bash
    npm i -D cypress typescript dotenv glob cross-env @types/node
    ```
 2. Copie a pasta `cypress/support/` para o seu repositório.
-3. No seu `cypress.config.ts`, importe a task `checkFileExists` e o leitor de `dotenv`.
+3. No seu `cypress.config.ts`, importe a task `checkFileExists` e a inicialização de `dotenv`.
 4. Garanta que seu `tsconfig.json` inclua `"cypress/support/index.d.ts"`.
 
 ---
@@ -225,7 +225,7 @@ npm run cy:open
 ## 🛡️ Boas Práticas Anti-Flakiness
 
 1. **Evite `force: true` indiscriminadamente**: utilize comandos com espera ativa de habilitado como `clickWhenVisibleAndEnabled`.
-2. **Priorize Atributos Desacoplados**: use sempre `cy.getByTestId(...)` ou `cy.getByDataCy(...)` para blindar seus testes contra refatorações visuais.
+2. **Priorize Atributos Desacoplados**: use sempre `cy.getByTestId(...)` ou `cy.getByDataCy(...)` para blindar seus testes contra refatorações visuais de classes CSS.
 3. **Massa Isolada e Sem Colisão**: nunca utilize CPFs ou e-mails repetidos. Utilize `DataGenerator` para viabilizar paralelismo e execuções concorrentes limpas.
 4. **Padrão Híbrido**: use a UI apenas para testar a experiência do usuário. Toda a massa preliminar deve ser criada via API com `ApiHelper`.
 
@@ -236,4 +236,5 @@ npm run cy:open
 Distribuído sob a licença **MIT**. Veja [LICENSE](LICENSE) para mais detalhes.
 
 Feito com dedicação por **[Matheus Neves](https://github.com/mthsneves)**.  
+Branch principal: **[`cypress-commands-toolkit`](https://github.com/mthsneves/cypress-commands-toolkit/tree/cypress-commands-toolkit)**  
 Contribuições, sugestões e issues são sempre bem-vindas!
