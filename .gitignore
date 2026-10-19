@@ -1,22 +1,75 @@
 # Dependências
 node_modules/
+.pnp
+.pnp.js
 
-# Cypress outputs
+# Saídas e relatórios do Cypress
 cypress/downloads/*
 !cypress/downloads/.gitkeep
 cypress/screenshots/
 cypress/videos/
+cypress/results/
+cypress/reports/
+mochawesome-report/
 
-# Variáveis de ambiente
+# Variáveis de ambiente e credenciais (Segurança)
 .env
 .env.*
+!.env.example
 cypress/config/.env.*
 !cypress/config/.env.example
 
-# Build / Cobertura
-dist/
-coverage/
+# Logs de depuração e execução
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
 
-# Sistema Operacional
+# Compilação e Cobertura
+dist/
+build/
+out/
+coverage/
+.nyc_output/
+*.tsbuildinfo
+
+# Caches de ferramentas e empacotadores
+.cache/
+.parcel-cache/
+.turbo/
+.eslintcache
+.stylelintcache
+.cypress-cache/
+
+# Editores e IDEs
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+*.sublime-project
+*.sublime-workspace
+
+# Arquivos temporários e de sistema
 .DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+._*
+.Spotlight-V100
+.Trashes
 Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.tmp
+*.temp

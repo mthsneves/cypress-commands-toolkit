@@ -1,9 +1,13 @@
 {
-  "name": "cypress-master-toolkit",
+  "name": "best-commands-cypress",
   "version": "1.0.0",
-  "description": "Toolkit de comandos customizados, utilitários e padrões para automação Cypress + TypeScript",
+  "description": "Cypress Master Automation Toolkit: comandos customizados de alta performance, resiliência de UI, geradores de dados matematicamente válidos, helpers de API e login concorrente.",
   "main": "index.js",
   "private": false,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mthsneves/Best-Commands-Cypress.git"
+  },
   "scripts": {
     "cy:open": "cypress open",
     "cy:run": "cypress run",
@@ -14,10 +18,13 @@
   },
   "keywords": [
     "cypress",
+    "cypress-commands",
     "typescript",
     "automation",
     "testing",
-    "e2e"
+    "e2e",
+    "resilience",
+    "quality-assurance"
   ],
   "author": "Matheus Neves",
   "license": "MIT",
